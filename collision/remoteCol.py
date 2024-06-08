@@ -1,0 +1,11 @@
+from pwn import *
+
+#io = process(['./col',b'\xC8\xCE\xC5\x06\xC8\xCE\xC5\x06\xC8\xCE\xC5\x06\xC8\xCE\xC5\x06\xCC\xCE\xC5\x06'])
+
+shell = ssh('col','pwnable.kr',password='guest',port=2222)
+
+io = shell.process(['./col',b'\xC8\xCE\xC5\x06\xC8\xCE\xC5\x06\xC8\xCE\xC5\x06\xC8\xCE\xC5\x06\xCC\xCE\xC5\x06'])
+
+print(io.recvall().decode())
+#for fun print(shell.ls().decode())
+shell.close()
